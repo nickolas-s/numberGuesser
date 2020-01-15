@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        height: 100vh;
+        background: url("img/alex-chambers-CyMd0vOYFfU-unsplash.jpg") no-repeat
+          center center/cover;
+        color: #f4f4f4;
+      }
+
+      .container {
+        text-align: center;
+        min-width: 350px;
+        padding-top: 100px;
+      }
+
+      input.spinner {
+        height: 25px;
+        text-align: center;
+      }
+
+      h1 {
+        font-family: "Patrick Hand", cursive;
+      }
+    </style>
+    <title>Number Guesser</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Number Guesser</h1>
+
+      <div id="game">
+        <p>
+          Guess a number between
+          <input
+            type="number"
+            min="1"
+            max="100"
+            step="1"
+            value="1"
+            class="spinner min-num"
+          />
+          and
+          <input
+            type="number"
+            min="1"
+            max="100"
+            step="1"
+            value="10"
+            class="spinner max-num"
+          />.
+        </p>
+        <input
+          type="number"
+          id="guess-input"
+          placeholder="Enter yout guess..."
+        />
+        <input
+          type="submit"
+          value="submit"
+          id="guess-value"
+          class="button-primary"
+        />
+        <p class="message"></p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
