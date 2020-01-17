@@ -74,12 +74,22 @@ function changeRangeInput() {
   resetGame(minNum, maxNum);
 }
 
+function checkInput() {
+  if (submit.value === 'submit') {
+    matchNumbers();
+  } else {
+    resetGame();
+  }
+}
+
 function loadEventListeners() {
   submit.addEventListener('click', () => {
-    if (submit.value === 'submit') {
-      matchNumbers();
-    } else {
-      resetGame();
+    checkInput();
+  });
+
+  window.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      checkInput();
     }
   });
 
