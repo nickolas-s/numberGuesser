@@ -3,6 +3,7 @@ const guessInput = document.querySelector('#guess-input');
 const message = document.querySelector('.message');
 const minInput = document.querySelector('.min-num');
 const maxInput = document.querySelector('.max-num');
+const chances = 3;
 let count = 0;
 let minNum;
 let maxNum;
@@ -40,13 +41,11 @@ function matchNumbers() {
     messageEndGame(`${guess} is correct!`, '#00D673');
   } else {
     count += 1;
-    if (count < 2) {
+    if (count < chances) {
       messageContinueGame(
-        `${guess} is not correct, you have ${3 - count} guesses left!`
-      );
-    } else if (count === 2) {
-      messageContinueGame(
-        `${guess} is not correct, you have ${3 - count} guess left!`
+        `${guess} is not correct, you have ${chances - count} guess${
+          count === chances - 1 ? '' : 'es'
+        } left!`
       );
     } else {
       messageEndGame(
