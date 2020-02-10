@@ -1,21 +1,19 @@
 const submit = document.querySelector('#guess-value');
 const guessInput = document.querySelector('#guess-input');
 const message = document.querySelector('.message');
-const minInput = document.querySelector('.min-num');
-const maxInput = document.querySelector('.max-num');
-const chances = 3;
+const optionsInputs = document.querySelectorAll('.spinner');
+const options = {
+  MINIMUM: 1,
+  MAXIMUM: 10,
+  CHANCES: 3,
+};
 let count = 0;
-let minNum;
-let maxNum;
-
-minNum = Number(minInput.value);
-maxNum = Number(maxInput.value);
+let randomNumber = randomGenerator(options.MINIMUM, options.MAXIMUM);
+console.log(randomNumber);
 
 function randomGenerator(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-let randomNumber = randomGenerator(minNum, maxNum);
-console.log(randomNumber);
 
 function messageContinueGame(msg) {
   message.textContent = msg;
@@ -33,18 +31,18 @@ function messageEndGame(msg, color) {
 
 function matchNumbers() {
   const guess = Number(guessInput.value);
-  if (guess < minNum || guess > maxNum) {
+  if (guess < options.MINIMUM || guess > options.MAXIMUM) {
     messageContinueGame(
-      `Please enter a number between ${minNum} and ${maxNum}.`
+      `Please enter a number between ${options.MINIMUM} and ${options.MAXIMUM}.`
     );
   } else if (guess === randomNumber) {
     messageEndGame(`${guess} is correct!`, '#00D673');
   } else {
     count += 1;
-    if (count < chances) {
+    if (count < options.CHANCES) {
       messageContinueGame(
-        `${guess} is not correct, you have ${chances - count} guess${
-          count === chances - 1 ? '' : 'es'
+        `${guess} is not correct, you have ${options.CHANCES - count} guess${
+          count === options.CHANCES - 1 ? '' : 'es'
         } left!`
       );
     } else {
@@ -63,14 +61,14 @@ function resetGame() {
   guessInput.disabled = false;
   guessInput.style.border = '';
   message.textContent = '';
-  randomNumber = randomGenerator(minNum, maxNum);
+  randomNumber = randomGenerator(options.MINIMUM, options.MAXIMUM);
   console.log(randomNumber);
 }
 
-function changeRangeInput() {
-  minNum = Number(minInput.value);
-  maxNum = Number(maxInput.value);
-  resetGame(minNum, maxNum);
+function handleOption(event) {
+  const { value, name } = event.currentTarget;
+  options[name] = parseFloat(value);
+  resetGame(options.MINIMUM, options.MAXIMUM);
 }
 
 function checkInput() {
@@ -92,8 +90,7 @@ function loadEventListeners() {
     }
   });
 
-  minInput.addEventListener('input', changeRangeInput);
-  maxInput.addEventListener('input', changeRangeInput);
+  optionsInputs.forEach(input => input.addEventListener('input', handleOption));
 }
 
 loadEventListeners();

@@ -43,6 +43,10 @@
         -webkit-appearance: none;
         /* border-radius: 0; */
       }
+
+      label {
+        display: inline;
+      }
     </style>
     <title>Number Guesser</title>
   </head>
@@ -53,23 +57,29 @@
       <div id="game">
         <p>
           Guess a number between
-          <input
-            type="number"
-            min="1"
-            max="100"
-            step="1"
-            value="1"
-            class="spinner min-num"
-          />
+          <label for="MINIMUM">
+            <input
+              name="MINIMUM"
+              type="number"
+              min="1"
+              max="100"
+              step="1"
+              value="1"
+              class="spinner min-num"
+            />
+          </label>
           and
-          <input
-            type="number"
-            min="1"
-            max="100"
-            step="1"
-            value="10"
-            class="spinner max-num"
-          />.
+          <label for="MAXIMUM">
+            <input
+              name="MAXIMUM"
+              type="number"
+              min="1"
+              max="100"
+              step="1"
+              value="10"
+              class="spinner max-num"
+            /> </label
+          >.
         </p>
         <input
           type="number"
